@@ -1,0 +1,14 @@
+package org.example.FillMassif;
+
+import org.example.Student;
+
+import java.util.List;
+
+public class Massif {
+    FillStrategy fillStrategy;
+
+    public List<Student> fill(Integer size){
+        return fillStrategy.fill(size);
+    }
+
+}
