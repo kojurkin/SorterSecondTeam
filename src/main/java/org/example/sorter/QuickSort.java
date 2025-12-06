@@ -13,7 +13,7 @@ class QuickSort<Data> implements ISorterNode<Data> {
     }
 
     /**
-     * Сортирует от большего к меньшему (по умолчанию)
+     * Сортирует от меньшего к большему (по умолчанию)
      * @param dataList массив, котоырй надо отсортировать
      */
     @Override
