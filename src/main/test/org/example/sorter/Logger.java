@@ -4,7 +4,7 @@ import org.example.Student;
 
 import java.util.List;
 
-public class Logger {
+class Logger {
     static void log(Object text) {
         System.out.println(text);
     }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class QuickSort<Data> implements ISorterNode<Data> {
+class QuickSort<Data> implements ISorterNode<Data> {
     private final Comparator<Data> comparator;
 
     public QuickSort(Comparator<Data> comparator) {

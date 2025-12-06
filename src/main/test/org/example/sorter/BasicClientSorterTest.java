@@ -3,7 +3,6 @@ package org.example.sorter;
 import org.example.Student;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.example.sorter.BasicClientSorter.*;
