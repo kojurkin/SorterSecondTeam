@@ -10,7 +10,7 @@ import static org.example.sorter.Logger.log;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuickSortTest {
-    private StudentListGenerator studentListGenerator = new StudentListGenerator();
+    private final StudentListGenerator studentListGenerator = new StudentListGenerator();
 
     @Test
     void sortAsNode() {
