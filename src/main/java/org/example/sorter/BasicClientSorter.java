@@ -3,7 +3,6 @@ package org.example.sorter;
 import org.example.Student;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 public class BasicClientSorter {
     private final Map<ClientFieldName, ASorter> sorterList = new HashMap<>();

@@ -21,12 +21,4 @@ public class StudentListGenerator {
         }
         return studentList;
     }
-
-    public List<Student> generateRandomStudentList() {
-        List<Student> studentList = new LinkedList<>();
-        for (int iStudent = 0; iStudent < 100; iStudent++) {
-            studentList.add(new Student(rnd.nextInt(10), rnd.nextDouble(10), rnd.nextInt(10)));
-        }
-        return studentList;
-    }
 }
