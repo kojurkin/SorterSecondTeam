@@ -1,9 +1,9 @@
 package org.example;
 
 public class Student {
-    private Integer groupNumber;
-    private Double averageScore;
-    private Integer studentBookNumber;
+    public Integer groupNumber;
+    public Double averageScore;
+    public Integer studentBookNumber;
 
     public Student(Integer groupNumber, Double averageScore, Integer studentBookNumber) {
         this.groupNumber = groupNumber;
