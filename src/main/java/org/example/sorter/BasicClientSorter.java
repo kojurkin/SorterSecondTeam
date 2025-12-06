@@ -3,7 +3,6 @@ package org.example.sorter;
 import org.example.Student;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 public class BasicClientSorter {
     private final Map<ClientFieldName, ASorter> sorterList = new HashMap<>();
@@ -16,7 +15,7 @@ public class BasicClientSorter {
 
     /**
      * Сортирует сначала по первому полю, потом по второму если есть одинаковые значения, и так далее.
-     * Сортирует от большего к меньшему (по умолчанию)
+     * Сортирует от меньшего к большему (по умолчанию)
      *
      * @param studentList     список, который надо отсортировать
      * @param sortingPriority Приоритет на сортировку. Сначала сортируется по первому указанному полю.

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class ChainSorter implements ISorter<Student> {
+class ChainSorter implements ISorter<Student> {
     private ChainSorter nextSorter;
     private final ISorterNode<Student> currentSorter;
 
@@ -14,7 +14,7 @@ public class ChainSorter implements ISorter<Student> {
         this.currentSorter = currentSorter;
     }
 
-    public ChainSorter setNextSorter(ISorterNode<Student> nextSorter){
+    public ChainSorter setNextSorter(ISorterNode<Student> nextSorter) {
         this.nextSorter = new ChainSorter(nextSorter);
         return this.nextSorter;
     }
@@ -38,7 +38,7 @@ public class ChainSorter implements ISorter<Student> {
 
     //Получаем массив, в котором найденные объекты с одинаковыми значениями (по критерию сортировки)
     // сложены в отдельный массив (нода)
-    private List<List<Student>> sortAsNode(List<Student> studentList){
+    private List<List<Student>> sortAsNode(List<Student> studentList) {
         return currentSorter.sortAsNode(studentList);
     }
 }

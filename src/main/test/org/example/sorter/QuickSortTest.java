@@ -20,11 +20,11 @@ class QuickSortTest {
         List<Student> flatResult = result.stream().flatMap(List::stream).toList();
         log("Sorted by groupNumber", flatResult);
         int maxGroupNumber = 0;
-        for (Student student:flatResult             ) {
-            if(maxGroupNumber < student.groupNumber){
+        for (Student student : flatResult) {
+            if (maxGroupNumber < student.groupNumber) {
                 maxGroupNumber = student.groupNumber;
             }
-            if(maxGroupNumber > student.groupNumber){
+            if (maxGroupNumber > student.groupNumber) {
                 fail();
             }
         }

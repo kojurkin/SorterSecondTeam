@@ -108,7 +108,7 @@ class BasicClientSorterTest {
 
         assertThrowsExactly(IllegalArgumentException.class, (NamedExecutable) () -> {
             try {
-                List<Student> sortedList = sorter.sort(studentList, (ClientFieldName[])null);
+                List<Student> sortedList = sorter.sort(studentList, (ClientFieldName[]) null);
                 assertNull(sortedList);
             } catch (Exception e) {
                 System.out.println(e.getMessage());

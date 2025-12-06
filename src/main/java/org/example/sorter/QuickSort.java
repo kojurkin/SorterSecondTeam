@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class QuickSort<Data> implements ISorterNode<Data> {
+class QuickSort<Data> implements ISorterNode<Data> {
     private final Comparator<Data> comparator;
 
     public QuickSort(Comparator<Data> comparator) {
@@ -13,7 +13,8 @@ public class QuickSort<Data> implements ISorterNode<Data> {
     }
 
     /**
-     * Сортирует от большего к меньшему (по умолчанию)
+     * Сортирует от меньшего к большему (по умолчанию)
+     *
      * @param dataList массив, котоырй надо отсортировать
      */
     @Override
@@ -39,11 +40,11 @@ public class QuickSort<Data> implements ISorterNode<Data> {
             center.add(data);
         }
         List<List<Data>> result = new LinkedList<>();
-        if(left.size() > 0){
+        if (left.size() > 0) {
             result.addAll(sortAsNode(left));
         }
         result.add(center);
-        if(right.size() > 0){
+        if (right.size() > 0) {
             result.addAll(sortAsNode(right));
         }
         return result;
