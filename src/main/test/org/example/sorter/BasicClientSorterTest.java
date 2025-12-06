@@ -12,7 +12,7 @@ import static org.example.sorter.Logger.log;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BasicClientSorterTest {
-    private StudentListGenerator studentListGenerator = new StudentListGenerator();
+    private final StudentListGenerator studentListGenerator = new StudentListGenerator();
     BasicClientSorter sorter = new BasicClientSorter();
 
     @Test
@@ -40,7 +40,7 @@ class BasicClientSorterTest {
 
     @Test
     void testIsTheSameLength() {
-        List<Student> studentList =  studentListGenerator.generateFixedStudentList(10);
+        List<Student> studentList = studentListGenerator.generateFixedStudentList(10);
         List<Student> sortedList = sorter.sort(studentList,
                 ClientFieldName.AverageScore,
                 ClientFieldName.StudentBookNumber,

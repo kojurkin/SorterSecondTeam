@@ -5,7 +5,7 @@ import org.example.Student;
 import java.util.Comparator;
 import java.util.List;
 
-abstract class ASorter implements ISorter<Student>, ISorterNode<Student> {
+public abstract class ASorter implements ISorter<Student>, ISorterNode<Student> {
     private ISorterNode<Student> sorterNodeCache;
     @Override
     public List<Student> sort(List<Student> studentList) {

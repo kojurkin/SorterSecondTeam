@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class ChainSorter implements ISorter<Student> {
+public class ChainSorter implements ISorter<Student> {
     private ChainSorter nextSorter;
     private final ISorterNode<Student> currentSorter;
 
