@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.example.student.Student;
+import org.example.student.StudentBuilder;
+
 public class StudentTest {
 
     @Test
@@ -44,7 +47,7 @@ public class StudentTest {
     void testInvalidRecordBookNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new StudentBuilder()
-                        .recordBookNumber(0)
+                        .setStudentBookNumber(0)
         );
     }
 
