@@ -1,6 +1,6 @@
 package org.example.sorter;
 
-import org.example.Student;
+import org.example.student.Student;
 import org.jspecify.annotations.NonNull;
 
 import java.util.List;

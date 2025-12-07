@@ -1,9 +1,8 @@
 package org.example;
 
-import org.example.FillMassif.FillMassifConsole;
-import org.example.FillMassif.FillMassifFromFile;
 import org.example.FillMassif.FillMassifRandom;
 import org.example.FillMassif.Massif;
+import org.example.student.Student;
 
 import java.util.List;
 

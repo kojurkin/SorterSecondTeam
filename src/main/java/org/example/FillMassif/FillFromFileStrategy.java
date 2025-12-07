@@ -1,7 +1,6 @@
 package org.example.FillMassif;
 
-import org.example.FillMassif.FillStrategy;
-import org.example.Student;
+import org.example.student.Student;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

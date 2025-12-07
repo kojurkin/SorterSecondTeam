@@ -1,6 +1,6 @@
 package org.example.FillMassif;
 
-import org.example.Student;
+import org.example.student.Student;
 
 import java.util.List;
 
