@@ -1,10 +1,12 @@
 package org.example.sorter;
 
+import org.jspecify.annotations.NonNull;
+
 class ChainSorterBuilder {
     private ChainSorter rootSorter;
     private ChainSorter tailSorter;
 
-    public void nextSorter(ASorter nextSorter) {
+    public void nextSorter(@NonNull ASorter nextSorter) {
         if (rootSorter == null) {
             setRootSorter(nextSorter);
         }

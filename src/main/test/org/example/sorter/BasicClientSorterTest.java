@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.sorter.BasicClientSorter.*;
 import static org.example.sorter.Logger.log;
 import static org.junit.jupiter.api.Assertions.*;
 
