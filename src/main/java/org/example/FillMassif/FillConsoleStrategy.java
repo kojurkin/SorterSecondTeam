@@ -1,6 +1,7 @@
 package org.example.FillMassif;
 
 import org.example.student.Student;
+import org.example.student.StudentBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,8 +31,12 @@ public class FillConsoleStrategy implements FillStrategy {
                 System.out.println("Введите номер зачетной книжки: ");
                 Integer studentBookNumber = Integer.parseInt(br.readLine());
 
-                if(numberGroup > 0 && averageScore > 0.5 && averageScore <= 5) {
-                    Student student = new Student(numberGroup, averageScore, studentBookNumber);
+                if (numberGroup > 0 && averageScore > 0.5 && averageScore <= 5) {
+                    Student student = new StudentBuilder()
+                            .setGroupNumber(numberGroup)
+                            .setAverageScore(averageScore)
+                            .setStudentBookNumber(studentBookNumber)
+                            .build();
                     students.add(student);
                 } else {
                     System.out.println("Введенные значения не верны! Студент не может быть создан! \n" +
@@ -43,11 +48,9 @@ public class FillConsoleStrategy implements FillStrategy {
                 System.out.println(num);
             }
             return students;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Ошибка ввода: " + e.getMessage());
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Неверный формат числа: " + e.getMessage());
         }
         return new ArrayList<>();

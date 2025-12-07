@@ -13,9 +13,9 @@ public class StudentBuilder {
         return this;
     }
 
-    public StudentBuilder setAverageGrade(Double averageScore) {
-        if (averageScore < 0.0 || averageScore > 5.0) {
-            throw new IllegalArgumentException("Средняя оценка должны быть в диапазоне от 0 до 5.");
+    public StudentBuilder setAverageScore(Double averageScore) {
+        if (averageScore < 2.0 || averageScore > 5.0) {
+            throw new IllegalArgumentException("Средняя оценка должны быть в диапазоне от 2 до 5.");
         }
         this.averageScore = averageScore;
         return this;

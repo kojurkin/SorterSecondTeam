@@ -1,6 +1,7 @@
 package org.example.FillMassif;
 
 import org.example.student.Student;
+import org.example.student.StudentBuilder;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,7 +19,11 @@ public class FillRandomStrategy implements FillStrategy {
         System.out.println("Заполняем массив рандомными данными");
         ArrayList<Student> list = new ArrayList<>();
         for (int i = 0; i < size; i++){
-            Student student = new Student(randomGroupNumber(),randomAverageScore(),randomStudentBookNumber());
+            Student student = new StudentBuilder()
+                    .setStudentBookNumber(randomGroupNumber())
+                    .setAverageScore(randomAverageScore())
+                    .setStudentBookNumber(randomStudentBookNumber())
+                    .build();
             list.add(student);
         }
         return list;
