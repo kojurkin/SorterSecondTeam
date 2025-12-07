@@ -26,11 +26,15 @@ public class BasicClientSorter {
             return studentList;
         }
         validateInput(studentList, sortingPriority);
+        return getSorter(sortingPriority).sort(studentList);
+    }
+
+    private ChainSorter getSorter(ClientFieldName... sortingPriority) {
         ChainSorterBuilder chainSorterBuilder = new ChainSorterBuilder();
         for (ClientFieldName fieldName : sortingPriority) {
             chainSorterBuilder.nextSorter(sorterList.get(fieldName));
         }
-        return chainSorterBuilder.build().sort(studentList);
+        return chainSorterBuilder.build();
     }
 
     private boolean isNeedToSort(List<Student> studentList) {
