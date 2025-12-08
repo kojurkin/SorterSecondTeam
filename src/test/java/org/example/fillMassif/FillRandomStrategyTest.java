@@ -11,9 +11,9 @@ public class FillRandomStrategyTest {
 
     @Test
     public void testFillNormal(){
-        ArrayList<Student> fillMassif = new FillRandomStrategy().fill(-1);
+        ArrayList<Student> fillMassif = new FillRandomStrategy().fill(5);
 
-        assertEquals(0,fillMassif.size());
+        assertEquals(5,fillMassif.size());
     }
 
     @Test
