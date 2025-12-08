@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.FillMassif.FillMassifRandom;
 import org.example.FillMassif.Massif;
+import org.example.mthreadcounting.MThreadCounting;
 import org.example.student.Student;
 
 import java.util.List;
@@ -27,5 +28,9 @@ public class App {
         //    System.out.println(list.get(i));
         //}
 
+        // MThreadCounting
+        Student studentForSearch = new Student(341, 2.27, 70287439);
+        MThreadCounting mThreadCounting = new MThreadCounting();
+        mThreadCounting.getCounting(list, studentForSearch);
     }
 }
