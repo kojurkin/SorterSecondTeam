@@ -1,6 +1,7 @@
 package org.example.sorter;
 
 import org.example.Student;
+import org.example.student.Student;
 
 import java.util.List;
 
