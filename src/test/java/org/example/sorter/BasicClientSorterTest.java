@@ -1,6 +1,5 @@
 package org.example.sorter;
 
-import org.example.Student;
 import org.example.student.Student;
 import org.junit.jupiter.api.NamedExecutable;
 import org.junit.jupiter.api.Test;
