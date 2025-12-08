@@ -12,7 +12,6 @@ public class App {
         //Massif fillMassif = new FillMassifConsole();
         //List<Student> list = fillMassif.fill(2);
 
-
         //Рандомное заполнение массива
         Massif fillMassif = new FillMassifRandom();
         List<Student> list = fillMassif.fill(5);
