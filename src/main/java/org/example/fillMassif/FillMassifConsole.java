@@ -1,4 +1,4 @@
-package org.example.fillmassif;
+package org.example.fillMassif;
 
 public class FillMassifConsole extends Massif{
     public FillMassifConsole(){

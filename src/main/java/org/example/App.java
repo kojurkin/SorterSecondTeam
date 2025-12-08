@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.fillmassif.FillMassifRandom;
-import org.example.fillmassif.Massif;
+import org.example.fillMassif.FillMassifRandom;
+import org.example.fillMassif.Massif;
 import org.example.student.Student;
 
 import java.util.List;

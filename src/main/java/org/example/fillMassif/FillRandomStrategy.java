@@ -1,4 +1,4 @@
-package org.example.fillmassif;
+package org.example.fillMassif;
 
 import org.example.student.Student;
 import org.example.student.StudentBuilder;
