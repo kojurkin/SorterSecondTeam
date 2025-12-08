@@ -1,7 +1,6 @@
 package org.example.sorter;
 
 import org.example.student.Student;
-import org.junit.jupiter.api.NamedExecutable;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,12 +9,13 @@ import java.util.List;
 import static org.example.sorter.Logger.log;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BasicClientSorterTest {
+public class BasicClientSorterTest {
     private final StudentListGenerator studentListGenerator = new StudentListGenerator();
     BasicClientSorter sorter = new BasicClientSorter();
 
     @Test
-    void sortASG() {
+    public void testSortASG() {
+        log("testSortASG");
         int maxSizePerField = 3;
         List<Student> studentList = studentListGenerator.generateFixedStudentList(maxSizePerField);
         List<Student> sortedList = sorter.sort(studentList,
@@ -38,7 +38,8 @@ class BasicClientSorterTest {
     }
 
     @Test
-    void testIsTheSameLength() {
+    public void testTheSameLength() {
+        log("testTheSameLength");
         List<Student> studentList = studentListGenerator.generateFixedStudentList(10);
         List<Student> sortedList = sorter.sort(studentList,
                 ClientFieldName.AverageScore,
@@ -49,7 +50,8 @@ class BasicClientSorterTest {
     }
 
     @Test
-    void testNullInput() {
+    public void testInputNull() {
+        log("testInputNull");
         List<Student> studentList = null;
         List<Student> sortedList = sorter.sort(studentList,
                 ClientFieldName.AverageScore,
@@ -59,13 +61,14 @@ class BasicClientSorterTest {
     }
 
     @Test
-    void testStudentNullInput() {
+    public void testStudentNullInput() {
+        log("testStudentNullInput");
         List<Student> studentList = new ArrayList<>();
         studentList.add(new Student(1, 4.0, 2));
         studentList.add(null);
         studentList.add(new Student(3, 2.0, 1));
 
-        assertThrowsExactly(IllegalArgumentException.class, (NamedExecutable) () -> {
+        assertThrowsExactly(IllegalArgumentException.class, () -> {
             try {
                 List<Student> sortedList = sorter.sort(studentList,
                         ClientFieldName.AverageScore,
@@ -80,12 +83,13 @@ class BasicClientSorterTest {
     }
 
     @Test
-    void testFieldNameNullInput() {
+    public void testFieldNameNullInput() {
+        log("testFieldNameNullInput");
         List<Student> studentList = new ArrayList<>();
         studentList.add(new Student(1, 4.0, 2));
         studentList.add(new Student(3, 2.0, 1));
 
-        assertThrowsExactly(IllegalArgumentException.class, (NamedExecutable) () -> {
+        assertThrowsExactly(IllegalArgumentException.class, () -> {
             try {
                 List<Student> sortedList = sorter.sort(studentList,
                         ClientFieldName.AverageScore,
@@ -100,12 +104,13 @@ class BasicClientSorterTest {
     }
 
     @Test
-    void testFieldNameListNullInput() {
+    public void testFieldNameListNullInput() {
+        log("testFieldNameListNullInput");
         List<Student> studentList = new ArrayList<>();
         studentList.add(new Student(1, 4.0, 2));
         studentList.add(new Student(3, 2.0, 1));
 
-        assertThrowsExactly(IllegalArgumentException.class, (NamedExecutable) () -> {
+        assertThrowsExactly(IllegalArgumentException.class, () -> {
             try {
                 List<Student> sortedList = sorter.sort(studentList, (ClientFieldName[]) null);
                 assertNull(sortedList);
