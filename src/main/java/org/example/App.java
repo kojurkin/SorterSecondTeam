@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.FillMassif.FillMassifRandom;
-import org.example.FillMassif.Massif;
+import org.example.fillmassif.FillMassifRandom;
+import org.example.fillmassif.Massif;
 import org.example.student.Student;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class App {
         //Massif fillMassif = new FillMassifFromFile();
         //List<Student> list = fillMassif.fill(8);
         //for(int i = 0; i < list.size(); i++){
-        //    System.out.println(list.get(i));
-        //}
+       //     System.out.println(list.get(i));
+       // }
 
     }
 }

@@ -1,4 +1,4 @@
-package org.example.FillMassif;
+package org.example.fillmassif;
 
 import org.example.student.Student;
 import java.util.ArrayList;

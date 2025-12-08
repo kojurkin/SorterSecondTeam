@@ -1,4 +1,4 @@
-package org.example.FillMassif;
+package org.example.fillmassif;
 
 public class FillMassifFromFile extends Massif {
 
