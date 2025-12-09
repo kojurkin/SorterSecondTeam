@@ -9,12 +9,12 @@ import java.util.Objects;
 import static org.example.sorter.Logger.log;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ClientSorterEvenTest {
+public class ClientSorterEvenTest {
     private final StudentListGenerator studentListGenerator = new StudentListGenerator();
     ClientSorterEven sorter = new ClientSorterEven(ClientFieldName.StudentBookNumber);
 
     @Test
-    void sort() {
+    public void testSort() {
         int maxSizePerField = 2;
         List<Student> studentList = studentListGenerator.generateFixedStudentList(maxSizePerField);
         List<Student> sortedList = sorter.sort(studentList,
