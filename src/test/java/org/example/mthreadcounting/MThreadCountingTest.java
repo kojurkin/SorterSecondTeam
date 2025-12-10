@@ -1,4 +1,4 @@
-import org.example.mthreadcounting.MThreadCounting;
+package org.example.mthreadcounting;
 import org.example.student.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MThreadCountingTest {
-    Student student = new Student();
+    org.example.student.Student student = new org.example.student.Student();
     List<Student> studentList = new ArrayList<Student>();
 
     MThreadCounting mThreadCounting;

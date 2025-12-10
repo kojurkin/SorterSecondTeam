@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class MThreadCounting {
-    private static int coincidences = 0;
+    private int coincidences = 0;
 
     public int getCounting(List<Student> list, Student studentForSearch) {
 
