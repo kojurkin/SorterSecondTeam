@@ -12,6 +12,7 @@ public class App {
         //Massif fillMassif = new FillMassifConsole();
         //List<Student> list = fillMassif.fill(2);
 
+
         //Рандомное заполнение массива
         Massif fillMassif = new FillMassifRandom();
         List<Student> list = fillMassif.fill(5);
@@ -23,8 +24,8 @@ public class App {
         //Massif fillMassif = new FillMassifFromFile();
         //List<Student> list = fillMassif.fill(8);
         //for(int i = 0; i < list.size(); i++){
-       //     System.out.println(list.get(i));
-       // }
+        //    System.out.println(list.get(i));
+        //}
 
     }
 }
