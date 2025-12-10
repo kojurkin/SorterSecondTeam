@@ -5,12 +5,12 @@ import org.example.student.Student;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Exporter {
     public static String textFilePath = "result.txt";
 
-    public static void exportStudentsListToTextFile(ArrayList<Student> students, String filePath) {
+    public static void exportStudentsListToTextFile(List<Student> students, String filePath) {
         if (filePath.isBlank()) {
             filePath = textFilePath;
         }
