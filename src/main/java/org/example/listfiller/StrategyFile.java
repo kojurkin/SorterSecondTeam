@@ -1,16 +1,16 @@
-package org.example.fillMassif;
+package org.example.listfiller;
 
 import org.example.student.Student;
-import org.example.student.StudentBuilder;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class FillFromFileStrategy implements FillStrategy {
+public class StrategyFile implements Strategy {
     @Override
-    public ArrayList<Student> fill(Integer size) {
+    public List<Student> fill(Integer size) {
         if(size > 20 || size <= 0){
             System.out.println("В файле отсутствует заданное количество студентов!");
             return new ArrayList<>();

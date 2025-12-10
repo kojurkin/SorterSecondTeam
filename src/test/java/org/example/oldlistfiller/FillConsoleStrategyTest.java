@@ -1,4 +1,4 @@
-package org.example.fillmassif;
+package org.example.oldlistfiller;
 
 public class FillConsoleStrategyTest {
 }
