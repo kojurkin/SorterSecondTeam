@@ -6,5 +6,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface Strategy {
-    List<Student> fill(Integer size);
+    List<Student> fill(Integer size) throws Exception;
 }

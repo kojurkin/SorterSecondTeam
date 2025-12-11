@@ -7,7 +7,7 @@ import java.util.List;
 public class ListFiller {
     Strategy strategy;
 
-    public List<Student> fill(Integer size){
+    public List<Student> fill(Integer size) throws Exception {
         return strategy.fill(size);
     }
 
