@@ -1,31 +1,28 @@
 package org.example;
 
-import org.example.fillMassif.FillMassifRandom;
-import org.example.fillMassif.Massif;
+import org.example.listfiller.ListFiller;
+import org.example.listfiller.ListFillerConsole;
+import org.example.listfiller.ListFillerFile;
+import org.example.listfiller.ListFillerRandom;
 import org.example.student.Student;
 
 import java.util.List;
 
 public class App {
-    public static void main( String[] args ) {
-        //Заполнение массива через консоль
-        //Massif fillMassif = new FillMassifConsole();
-        //List<Student> list = fillMassif.fill(2);
+    public static void main( String[] args ) throws Exception {
 
+        // Random
+//        ListFiller fillRandom = new ListFillerRandom();
+//        List<Student> list = fillRandom.fill(3);
 
-        //Рандомное заполнение массива
-        Massif fillMassif = new FillMassifRandom();
-        List<Student> list = fillMassif.fill(5);
-        for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i));
-        }
+        // Console
+//        ListFiller fillConsole = new ListFillerConsole();
+//        List<Student> list = fillConsole.fill(2);
 
-        //Заполнение массива через файл
-        //Massif fillMassif = new FillMassifFromFile();
-        //List<Student> list = fillMassif.fill(8);
-        //for(int i = 0; i < list.size(); i++){
-        //    System.out.println(list.get(i));
-        //}
-
+        // File
+        ListFiller fillFile = new ListFillerFile();
+        // параметр – это количество пропущенных строк от начала списка
+        // значение 0 отобразит весь список
+        List<Student> list = fillFile.fill(8);
     }
 }

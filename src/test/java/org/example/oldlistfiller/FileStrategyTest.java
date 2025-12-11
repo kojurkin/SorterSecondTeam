@@ -1,4 +1,4 @@
-package org.example.fillMassif;
+package org.example.oldlistfiller;
 
 import org.example.student.Student;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FillFromFileStrategyTest {
+public class FileStrategyTest {
 
     @Test
     public void testFillNormal(){

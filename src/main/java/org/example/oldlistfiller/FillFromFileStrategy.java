@@ -1,7 +1,6 @@
-package org.example.fillMassif;
+package org.example.oldlistfiller;
 
 import org.example.student.Student;
-import org.example.student.StudentBuilder;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
