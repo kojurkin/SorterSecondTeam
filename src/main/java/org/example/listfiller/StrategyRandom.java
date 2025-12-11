@@ -46,6 +46,7 @@ public class StrategyRandom implements Strategy {
 
         System.out.println("Готово!");
         System.out.println("-------");
+        System.out.println("Мы внесли следующие данные для студентов:");
 
         checkList(list);
 
@@ -53,7 +54,6 @@ public class StrategyRandom implements Strategy {
     }
 
     public void checkList(List<Student> list) {
-        System.out.println("Мы сгенерировали следующие данные для студентов:");
         for(int i = 0; i < list.size(); i++) {
             System.out.println("• Cтудент " + (i + 1) + ":" +
                     " группа " + list.get(i).getGroupNumber() +

@@ -8,53 +8,130 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StrategyConsole implements Strategy {
     @Override
-    public List<Student> fill(Integer size) {
-        System.out.println("Заполнить массив данными из консоли");
+    public List<Student> fill(Integer size) throws Exception {
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            //System.out.print("Введите размер массива: ");
-            //int size = Integer.parseInt(br.readLine()); // Считываем размер массива
+        // проверка: необходима для тестов
+        if(size <= 0){
+            throw new Exception("Значение параметра должно быть больше ноля: " + size);
+        }
 
-            ArrayList<Student> students = new ArrayList<>();
-            System.out.println("Введите элементы массива:");
-            for (int i = 0; i < size; i++) {
-                System.out.print("Студент " + (i + 1) + ": ");
-                System.out.println("Введите номер группу: ");
+        System.out.println("\nСейчас мы заполним данные студентов");
 
-                Integer numberGroup = Integer.parseInt(br.readLine());
+        List<Student> list = IntStream.range(0,size)
+                .mapToObj(i -> {
+                    System.out.println("\nСтудент " + (i + 1) + " из " + size);
+                    System.out.println("--------------");
 
-                System.out.println("Введите средний балл: ");
-                Double averageScore = Double.parseDouble(br.readLine());
+                    int groupNumber = setGroupNumber();
+                    double averageScore = setAverageScore();
+                    int studentBookNumber = setStudentBookNumber();
 
-                System.out.println("Введите номер зачетной книжки: ");
-                Integer studentBookNumber = Integer.parseInt(br.readLine());
-
-                if (numberGroup > 0 && averageScore > 0.5 && averageScore <= 5) {
                     Student student = new StudentBuilder()
-                            .setGroupNumber(numberGroup)
+                            .setGroupNumber(groupNumber)
                             .setAverageScore(averageScore)
                             .setStudentBookNumber(studentBookNumber)
                             .build();
-                    students.add(student);
-                } else {
-                    System.out.println("Введенные значения не верны! Студент не может быть создан! \n" +
-                            "======================================================================");
-                }
-            }
-            System.out.println("Введённый массив:");
-            for (Student num : students) {
-                System.out.println(num);
-            }
-            return students;
-        } catch (IOException e) {
-            System.out.println("Ошибка ввода: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("Неверный формат числа: " + e.getMessage());
-        }
+                    return student;
+                }).collect(Collectors.toList());
+
+        System.out.println("Готово!");
+        System.out.println("-------");
+        System.out.println("Мы заполнили следующие данные студентов:");
+
+        checkList(list);
+
         return new ArrayList<>();
     }
 
+    public int setGroupNumber() {
+        int groupNumber = 0;
+
+        while(true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите номер группы:");
+            System.out.println("(целые числа от 100 до 400)");
+
+            // проверка: пользователь должен ввести число, а не буквы
+            if (scanner.hasNextInt()) {
+                groupNumber = scanner.nextInt();
+            } else {
+                System.out.println("<!> Введённые данные не соответствуют условию");
+                System.out.println("---------------------------------------------");
+            }
+
+            if (groupNumber >= 100 && groupNumber <= 400){
+                break;
+            }
+        }
+        return groupNumber;
+    }
+
+    public double setAverageScore() {
+        double averageScore = 0;
+
+        while(true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите средний балл студента:");
+            System.out.println("(от 2,0 до 5,0)");
+
+            // проверка: пользователь должен ввести число, а не буквы
+            if (scanner.hasNextDouble()) {
+                // меняем знак разделителя дроби, чтобы не возникала ошибка
+//              // из-зи знака, который не соответствует Locale сканнера
+                String input = String.valueOf(scanner.nextDouble());
+                averageScore = Double.parseDouble(input.replace(",","."));
+
+                // оставляем два знака после запятой
+                averageScore = Math.ceil(averageScore * 100) / 100;
+            } else {
+                scanner.nextLine();
+                System.out.println("<!> Данные не соответствуют условию");
+                System.out.println("-----------------------------------");
+            }
+
+            if (averageScore >= 2 && averageScore <= 5) {
+                break;
+            }
+        }
+        return averageScore;
+    }
+
+    public int setStudentBookNumber() {
+        int studentBookNumber = 0;
+
+        while(true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите номер зачётной книжки:");
+            System.out.println("(числа от 10000000 до 99999999)");
+
+            // проверка: пользователь должен ввести число, а не буквы
+            if (scanner.hasNextInt()) {
+                studentBookNumber = scanner.nextInt();
+            } else {
+                scanner.nextLine();
+                System.out.println("<!> Введённые данные не соответствуют условию");
+                System.out.println("---------------------------------------------");
+            }
+
+            if (studentBookNumber >= 10000000 && studentBookNumber <= 99999999) {
+                break;
+            }
+        }
+        return studentBookNumber;
+    }
+
+    public void checkList(List<Student> list) {
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println("• Cтудент " + (i + 1) + ":" +
+                    " группа " + list.get(i).getGroupNumber() +
+                    ", средний балл - " + list.get(i).getAverageScore() +
+                    ", зачётная книжка №" + list.get(i).getStudentBookNumber());
+        }
+    }
 }

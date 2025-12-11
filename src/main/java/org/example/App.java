@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.listfiller.ListFiller;
+import org.example.listfiller.ListFillerConsole;
 import org.example.listfiller.ListFillerRandom;
 import org.example.student.Student;
 
@@ -10,12 +11,12 @@ public class App {
     public static void main( String[] args ) throws Exception {
 
         // Random
-        ListFiller fillRandom = new ListFillerRandom();
-        List<Student> list = fillRandom.fill(3);
+//        ListFiller fillRandom = new ListFillerRandom();
+//        List<Student> list = fillRandom.fill(3);
 
         // Console
-        //Massif fillMassif = new FillMassifConsole();
-        //List<Student> list = fillMassif.fill(2);
+//        ListFiller fillConsole = new ListFillerConsole();
+//        List<Student> list = fillConsole.fill(2);
 
         // File
         //Massif fillMassif = new FillMassifFromFile();
