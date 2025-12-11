@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.listfiller.ListFiller;
 import org.example.listfiller.ListFillerConsole;
+import org.example.listfiller.ListFillerFile;
 import org.example.listfiller.ListFillerRandom;
 import org.example.student.Student;
 
@@ -19,7 +20,9 @@ public class App {
 //        List<Student> list = fillConsole.fill(2);
 
         // File
-        //Massif fillMassif = new FillMassifFromFile();
-        //List<Student> list = fillMassif.fill(8);
+        ListFiller fillFile = new ListFillerFile();
+        // параметр – это количество пропущенных строк от начала списка
+        // значение 0 отобразит весь список
+        List<Student> list = fillFile.fill(8);
     }
 }
