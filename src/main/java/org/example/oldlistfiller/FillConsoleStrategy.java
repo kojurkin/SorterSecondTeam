@@ -14,13 +14,11 @@ public class FillConsoleStrategy implements FillStrategy {
         System.out.println("Заполнить массив данными из консоли");
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            //System.out.print("Введите размер массива: ");
-            //int size = Integer.parseInt(br.readLine()); // Считываем размер массива
 
             ArrayList<Student> students = new ArrayList<>();
             System.out.println("Введите элементы массива:");
-            for (int i = 0; i < size; i++) {
-                System.out.print("Студент " + (i + 1) + ": ");
+            while (students.size() < size) {
+                System.out.print("Студент : ");
                 System.out.println("Введите номер группу: ");
 
                 Integer numberGroup = Integer.parseInt(br.readLine());
