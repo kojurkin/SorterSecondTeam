@@ -1,31 +1,11 @@
 package org.example;
 
-import org.example.fillMassif.FillMassifRandom;
-import org.example.fillMassif.Massif;
-import org.example.student.Student;
+import org.example.menu.Menu;
 
-import java.util.List;
 
 public class App {
-    public static void main( String[] args ) {
-        //Заполнение массива через консоль
-        //Massif fillMassif = new FillMassifConsole();
-        //List<Student> list = fillMassif.fill(2);
-
-
-        //Рандомное заполнение массива
-        Massif fillMassif = new FillMassifRandom();
-        List<Student> list = fillMassif.fill(5);
-        for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i));
-        }
-
-        //Заполнение массива через файл
-        //Massif fillMassif = new FillMassifFromFile();
-        //List<Student> list = fillMassif.fill(8);
-        //for(int i = 0; i < list.size(); i++){
-        //    System.out.println(list.get(i));
-        //}
-
+    public static void main( String[] args ) throws Exception {
+        Menu menu = new Menu();
+        menu.mainMenu();
     }
 }

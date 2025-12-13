@@ -1,4 +1,4 @@
-package org.example.fillMassif;
+package org.example.oldlistfiller;
 
 import org.example.student.Student;
 import org.example.student.StudentBuilder;
@@ -7,19 +7,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FillConsoleStrategy implements FillStrategy {
     @Override
-    public ArrayList<Student> fill(Integer size) {
+    public List<Student> fill(Integer size) {
         System.out.println("Заполнить массив данными из консоли");
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             //System.out.print("Введите размер массива: ");
             //int size = Integer.parseInt(br.readLine()); // Считываем размер массива
 
-            ArrayList<Student> students = new ArrayList<>();
+            List<Student> students = new ArrayList<>();
             System.out.println("Введите элементы массива:");
-            for (int i = 0; i < size; i++) {
+            while(students.size() <= size) {
+                int i = 0;
                 System.out.print("Студент " + (i + 1) + ": ");
                 System.out.println("Введите номер группу: ");
 
@@ -42,6 +44,7 @@ public class FillConsoleStrategy implements FillStrategy {
                     System.out.println("Введенные значения не верны! Студент не может быть создан! \n" +
                             "======================================================================");
                 }
+                i++;
             }
             System.out.println("Введённый массив:");
             for (Student num : students) {

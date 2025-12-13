@@ -5,6 +5,8 @@ public class Student {
     public Double averageScore;
     public Integer studentBookNumber;
 
+    public Student() {};
+
     public Student(Integer groupNumber, Double averageScore, Integer studentBookNumber) {
         this.groupNumber = groupNumber;
         this.averageScore = averageScore;
