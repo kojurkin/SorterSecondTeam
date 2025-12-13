@@ -14,11 +14,19 @@ public class StrategyFile implements Strategy {
     public List<Student> fill(Integer size) throws IOException {
 
         // проверка: необходима для тестов
-        if(size <= 0){
+        if(size < 0){
             throw new IOException("Значение параметра должно быть больше ноля: " + size);
         }
+        List<Student> list = parseListFromFile("file1.txt", size);
 
-        List<Student> list = Files.lines(Paths.get("file1.txt"))
+        System.out.println("Мы получили из файла следующие данные:");
+        checkList(list);
+
+        return list;
+    }
+
+    public List<Student> parseListFromFile(String path, int size) throws IOException {
+        List<Student> list = Files.lines(Paths.get(path))
                 // игнорируем пустые строки
                 .filter(line -> !line.isEmpty())
                 .map(line -> {
@@ -40,9 +48,6 @@ public class StrategyFile implements Strategy {
                 // значение 0 отобразит весь список
                 .skip(size)
                 .collect(Collectors.toList());
-
-        System.out.println("Мы получили из файла следующие данные:");
-        checkList(list);
 
         return list;
     }
