@@ -1,8 +1,9 @@
 package org.example.oldlistfiller;
 
 import org.example.student.Student;
-import java.util.ArrayList;
+
+import java.util.List;
 
 public interface FillStrategy {
-    ArrayList<Student> fill(Integer size);
+    List<Student> fill(Integer size);
 }

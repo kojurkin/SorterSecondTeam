@@ -6,18 +6,19 @@ import org.example.student.StudentBuilder;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FillRandomStrategy implements FillStrategy {
     @Override
-    public ArrayList<Student> fill(Integer size) {
+    public List<Student> fill(Integer size) {
         if(size <= 0){
             System.out.println("Введено не верное значение!");
             return new ArrayList<>();
         }
 
         System.out.println("Заполняем массив рандомными данными");
-        ArrayList<Student> list = new ArrayList<>();
+        List<Student> list = new ArrayList<>();
         for (int i = 0; i < size; i++){
             Student student = new StudentBuilder()
                     .setGroupNumber(randomGroupNumber())

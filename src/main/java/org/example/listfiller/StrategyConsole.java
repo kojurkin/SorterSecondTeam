@@ -3,9 +3,6 @@ package org.example.listfiller;
 import org.example.student.Student;
 import org.example.student.StudentBuilder;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,7 +43,7 @@ public class StrategyConsole implements Strategy {
 
         checkList(list);
 
-        return new ArrayList<>();
+        return list;
     }
 
     public int setGroupNumber() {

@@ -1,21 +1,24 @@
 package org.example.menu;
 
-import org.example.oldlistfiller.FillMassifConsole;
-import org.example.oldlistfiller.FillMassifFromFile;
-import org.example.oldlistfiller.FillMassifRandom;
-import org.example.oldlistfiller.Massif;
+import org.example.listfiller.ListFiller;
+import org.example.listfiller.ListFillerConsole;
+import org.example.listfiller.ListFillerFile;
+import org.example.listfiller.ListFillerRandom;
+import org.example.mthreadcounting.MThreadCounting;
 import org.example.sorter.BasicClientSorter;
 import org.example.sorter.ChainSorter;
 import org.example.sorter.ChainSorterFactory;
 import org.example.sorter.ClientFieldName;
 import org.example.sorter.ClientSorterEven;
 import org.example.student.Student;
+import org.example.student.StudentBuilder;
 import org.example.utilites.Exporter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,43 +27,35 @@ public class Menu {
     private static List<Student> students = new ArrayList<>();
     private static boolean isSorted = false;
 
-    public static void mainMenu() {
+    public static void mainMenu() throws Exception {
         while (true) {
             System.out.println("--Главное меню--\n  1. Создать массив.\n  2. Выбрать режим сортировки.\n  3. Записать результат в файл.\n  4. Подсчитать количество вхождений.\n  0. Выход.");
-            int input = readIntInput(0, 4);
+            int input = readIntInput(4);
             if (input == 0) {
                 System.out.println("Программа завершает работу.");
                 scanner.close();
                 break;
             }
             switch (input) {
-                case 1:
-                    createArray();
-                    break;
-                case 2:
-                    whichSort();
-                    break;
-                case 3:
-                    printToFile();
-                    break;
-                case 4:
-                    occurrencesCount();
-                    break;
+                case 1 -> createArray();
+                case 2 -> whichSort();
+                case 3 -> printToFile();
+                case 4 -> occurrencesCount();
             }
         }
     }
 
-    private static int readIntInput(int min, int max) {
+    private static int readIntInput(int max) {
         while (true) {
             String inputStr = scanner.nextLine().trim();
             try {
                 int input = Integer.parseInt(inputStr);
-                if (input >= min && input <= max) {
+                if (input >= 0 && input <= max) {
                     return input;
                 }
             } catch (NumberFormatException e) {
             }
-            System.out.println("Ошибка: Введены некорректные данные, пожалуйста, введите цифру от " + min + " до " + max + ".");
+            System.out.println("Ошибка: Введены некорректные данные, пожалуйста, введите цифру от " + 0 + " до " + max + ".");
         }
     }
 
@@ -71,61 +66,59 @@ public class Menu {
                 lineCount++;
             }
         }catch (IOException e) {
-            System.out.println("Ошибка: " + e.getStackTrace());
+            System.out.println("Ошибка: " + Arrays.toString(e.getStackTrace()));
         }
         return lineCount;
     }
 
-    public static void createArray() {
+    public static void createArray() throws Exception {
         int size;
         while (true) {
             System.out.println("--Создание массива--\n  Введите желаемый размер массива.");
             String inputStr = scanner.nextLine().trim();
             try {
                 size = Integer.parseInt(inputStr);
-                if (size >= 0) {
+                if (size >= 1) {
                     break;
                 }
             } catch (NumberFormatException e) {
+                System.out.println("Ошибка: Введены некорректные данные, пожалуйста, введите число больше 0.");
             }
-            System.out.println("Ошибка: Введены некорректные данные, пожалуйста, введите неотрицательное число.");
+
         }
         while (true) {
             System.out.println("--Создание массива--\n  1. Заполнить массив из файла.\n  2. Заполнить массив случайными данными.\n  3. Заполнить массив вручную.\n  0. Выйти в главное меню.");
-            int input = readIntInput(0, 3);
+            int input = readIntInput(3);
             if (input == 0) {
                 break;
             }
-            Massif fillMassif;
+            ListFiller listFiller;
             switch (input) {
                 case 1:
                     System.out.println("Заполнение массива из файла...");
                     int lineCount = howMuchLinesInFile();
                     System.out.println("В файле сейчас: " + lineCount);
-                    while (size > lineCount) {
-                        System.out.println("Ошибка: Желаемый размер (" + size + ") больше количества строк в файле (" + lineCount + "). Введите новый размер (не больше " + lineCount + "):");
+                    while (size > lineCount || size < 1) {
+                        System.out.println("Ошибка: Желаемый размер (" + size + ") не входит в диапозон (1, " + lineCount + "). Введите новый размер: ");
                         String newInputStr = scanner.nextLine().trim();
                         try {
                             size = Integer.parseInt(newInputStr);
-                            if (size < 0) {
-                                System.out.println("Ошибка: Размер должен быть неотрицательным.");
-                            }
                         } catch (NumberFormatException e) {
-                            System.out.println("Ошибка: Введены некорректные данные, пожалуйста, введите неотрицательное число.");
+                            System.out.println("Ошибка: Введены некорректные данные.");
                         }
                     }
-                    fillMassif = new FillMassifFromFile();
-                    students = fillMassif.fill(size);
+                    listFiller = new ListFillerFile();
+                    students = listFiller.fill(size);
                     break;
                 case 2:
                     System.out.println("Заполнение массива случайными данными...");
-                    fillMassif = new FillMassifRandom();
-                    students = fillMassif.fill(size);
+                    listFiller = new ListFillerRandom();
+                    students = listFiller.fill(size);
                     break;
                 case 3:
                     System.out.println("Заполнение массива вручную...");
-                    fillMassif = new FillMassifConsole();
-                    students = fillMassif.fill(size);
+                    listFiller = new ListFillerConsole();
+                    students = listFiller.fill(size);
                     break;
                 default:
                     continue;
@@ -141,7 +134,7 @@ public class Menu {
         }
         while (true) {
             System.out.println("--Выбор режима сортировки--\n  1. Отсортировать по всем трём полям.\n  2. Отсортировать четные значения одного из полей.\n  0. Выйти в главное меню.");
-            int input = readIntInput(0, 2);
+            int input = readIntInput(2);
             if (input == 0) {
                 break;
             }
@@ -159,7 +152,7 @@ public class Menu {
                 case 2:
                     System.out.println("Сортировка четных значений одного из полей...");
                     System.out.println("Выберите поле для сортировки четных значений:\n  1. Номер группы\n  2. Номер зачетной книжки\n  0. Отмена");
-                    int fieldInput = readIntInput(0, 2);
+                    int fieldInput = readIntInput(2);
                     if (fieldInput == 0) {
                         continue;
                     }
@@ -208,7 +201,7 @@ public class Menu {
 
     public static void occurrencesCount() {
         System.out.println("--Подсчет количества вхождений--");
-/*        if (students.isEmpty()) {
+        if (students.isEmpty()) {
             System.out.println("Ошибка: Список студентов не существует! Сначала создайте список студентов.");
             return;
         }
@@ -248,7 +241,7 @@ public class Menu {
             } else {
                 System.out.println("Введенные значения не верны! Студент не может быть создан!");
             }
-        }*/
+        }
     }
 
     private static void printStudents() {
@@ -262,7 +255,11 @@ public class Menu {
         }
     }
 
-    public static void init() {
+    /**
+     * На данный момент неиспользуется, нужен для нестатичной реализации Меню
+     * @throws Exception
+     */
+    /*public static void init() throws Exception {
         mainMenu();
-    }
+    }*/
 }

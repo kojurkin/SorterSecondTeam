@@ -38,7 +38,7 @@ public class StrategyFile implements Strategy {
                 })
                 // пропускает строки вначале списка
                 // значение 0 отобразит весь список
-                .skip(size)
+                .limit(size)
                 .collect(Collectors.toList());
 
         System.out.println("Мы получили из файла следующие данные:");
