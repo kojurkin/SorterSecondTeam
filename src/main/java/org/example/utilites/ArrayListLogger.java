@@ -40,4 +40,10 @@ public class ArrayListLogger<E> extends ArrayList<E> {
         log("isEmpty()");
         return super.isEmpty();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        log("equals()");
+        return super.equals(o);
+    }
 }

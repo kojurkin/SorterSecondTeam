@@ -2,6 +2,7 @@ package org.example.listfiller;
 
 import org.example.student.Student;
 import org.example.student.StudentBuilder;
+import org.example.utilites.LoggedCollectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class StrategyConsole implements Strategy {
                             .setStudentBookNumber(studentBookNumber)
                             .build();
                     return student;
-                }).collect(Collectors.toList());
+                }).collect(LoggedCollectors.toLoggedList());
 
         System.out.println("Готово!");
         System.out.println("-------");

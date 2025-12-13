@@ -22,7 +22,7 @@ public class StudentBuilder {
     }
 
     public StudentBuilder setStudentBookNumber(Integer studentBookNumber) {
-        if (groupNumber <= 0) {
+        if (studentBookNumber <= 0) {
             throw new IllegalArgumentException("Номер зачетной книжки может быть только положительным числом.");
         }
         this.studentBookNumber = studentBookNumber;

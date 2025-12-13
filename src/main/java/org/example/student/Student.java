@@ -5,9 +5,8 @@ public class Student {
     public Double averageScore;
     public Integer studentBookNumber;
 
-    public Student() {
+    public Student() {};
 
-    }
     public Student(Integer groupNumber, Double averageScore, Integer studentBookNumber) {
         this.groupNumber = groupNumber;
         this.averageScore = averageScore;
@@ -45,17 +44,5 @@ public class Student {
                 ", Средний балл: " + averageScore +
                 ", Номер зачетной книжки: " + studentBookNumber +
                 " }";
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        Student student = (Student) object;
-        if(this.groupNumber.equals(student.getGroupNumber()) &&
-                this.averageScore.equals(student.getAverageScore()) &&
-                this.studentBookNumber.equals(student.getStudentBookNumber())) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

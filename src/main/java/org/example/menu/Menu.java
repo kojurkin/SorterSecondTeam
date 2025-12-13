@@ -12,6 +12,7 @@ import org.example.sorter.ClientFieldName;
 import org.example.sorter.ClientSorterEven;
 import org.example.student.Student;
 import org.example.student.StudentBuilder;
+import org.example.utilites.ArrayListLogger;
 import org.example.utilites.Exporter;
 
 import java.io.BufferedReader;
@@ -23,11 +24,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    private static Scanner scanner = new Scanner(System.in);
-    private static List<Student> students = new ArrayList<>();
-    private static boolean isSorted = false;
+    private Scanner scanner = new Scanner(System.in);
+    private List<Student> students = new ArrayListLogger<>();
+    private boolean isSorted = false;
 
-    public static void mainMenu() throws Exception {
+    public void mainMenu() throws Exception {
         while (true) {
             System.out.println("--Главное меню--\n  1. Создать массив.\n  2. Выбрать режим сортировки.\n  3. Записать результат в файл.\n  4. Подсчитать количество вхождений.\n  0. Выход.");
             int input = readIntInput(4);
@@ -45,7 +46,7 @@ public class Menu {
         }
     }
 
-    private static int readIntInput(int max) {
+    private int readIntInput(int max) {
         while (true) {
             String inputStr = scanner.nextLine().trim();
             try {
@@ -59,7 +60,7 @@ public class Menu {
         }
     }
 
-    private static int howMuchLinesInFile() {
+    private int howMuchLinesInFile() {
         int lineCount = 0;
         try(BufferedReader br = new BufferedReader(new FileReader("file1.txt"))){
             while(br.readLine() != null) {
@@ -71,7 +72,7 @@ public class Menu {
         return lineCount;
     }
 
-    public static void createArray() throws Exception {
+    public void createArray() throws Exception {
         int size;
         while (true) {
             System.out.println("--Создание массива--\n  Введите желаемый размер массива.");
@@ -127,7 +128,7 @@ public class Menu {
         }
     }
 
-    public static void whichSort() {
+    public void whichSort() {
         if (students.isEmpty()) {
             System.out.println("Ошибка: Массив студентов пуст. Сначала создайте массив.");
             return;
@@ -187,7 +188,7 @@ public class Menu {
         }
     }
 
-    public static void printToFile() {
+    public void printToFile() {
         if(students.isEmpty()) {
             System.out.println("Ошибка: Список студентов не существует! Сначала создайте список студентов.");
             return;
@@ -199,7 +200,7 @@ public class Menu {
         Exporter.exportStudentsListToTextFile(students, "output.txt");
     }
 
-    public static void occurrencesCount() {
+    public void occurrencesCount() {
         System.out.println("--Подсчет количества вхождений--");
         if (students.isEmpty()) {
             System.out.println("Ошибка: Список студентов не существует! Сначала создайте список студентов.");
@@ -244,7 +245,7 @@ public class Menu {
         }
     }
 
-    private static void printStudents() {
+    private void printStudents() {
         if (students.isEmpty()) {
             System.out.println("Массив пуст.");
             return;

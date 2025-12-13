@@ -2,6 +2,7 @@ package org.example.listfiller;
 
 import org.example.student.Student;
 import org.example.student.StudentBuilder;
+import org.example.utilites.LoggedCollectors;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,7 +40,7 @@ public class StrategyFile implements Strategy {
                 // пропускает строки вначале списка
                 // значение 0 отобразит весь список
                 .limit(size)
-                .collect(Collectors.toList());
+                .collect(LoggedCollectors.toLoggedList());
 
         System.out.println("Мы получили из файла следующие данные:");
         checkList(list);
