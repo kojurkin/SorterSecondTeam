@@ -21,7 +21,7 @@ public class StrategyFileTest {
     @Test
     public void tryParseFileWithEmptyLines() throws IOException {
         String path = "src/test/java/org/example/listfiller/FileWithEmptyLines.txt";
-        List<Student> list = strategyFile.parseListFromFile(path,0);
+        List<Student> list = strategyFile.parseListFromFile(path,21);
         assertEquals(21, list.size());
     }
 
