@@ -170,13 +170,10 @@ public class Menu {
                     }
                     try {
                         ClientSorterEven evenSorter = new ClientSorterEven(selectedField);
-                        ChainSorterFactory factory = new ChainSorterFactory();
-                        ChainSorter chainSorter = factory.getSorter(
+                        students = evenSorter.sort(students,
                                 ClientFieldName.GroupNumber,
                                 ClientFieldName.AverageScore,
-                                ClientFieldName.StudentBookNumber
-                        );
-                        students = evenSorter.sort(students, chainSorter);
+                                ClientFieldName.StudentBookNumber);
                         isSorted = true;
                         printStudents();
                     } catch (IllegalArgumentException e) {
