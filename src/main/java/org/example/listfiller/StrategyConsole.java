@@ -23,8 +23,7 @@ public class StrategyConsole implements Strategy {
 
         List<Student> list = IntStream.range(0,size)
                 .mapToObj(i -> {
-                    System.out.println("\nСтудент " + (i + 1) + " из " + size);
-                    System.out.println("--------------");
+                    System.out.println("\nСтудент " + (i + 1) + " из " + size +"\n--------------");
 
                     int groupNumber = setGroupNumber();
                     double averageScore = setAverageScore();
@@ -38,13 +37,16 @@ public class StrategyConsole implements Strategy {
                     return student;
                 }).collect(LoggedCollectors.toLoggedList());
 
-        System.out.println("Готово!");
-        System.out.println("-------");
-        System.out.println("Мы заполнили следующие данные студентов:");
+        System.out.println("Готово!\n-------\nМы ввели следующие данные:");
 
         checkList(list);
 
         return list;
+    }
+
+    // проверка: пользователь должен ввести целое числов, а не строку
+    public int parseToInt(Scanner scanner) {
+        return (scanner.hasNextInt()) ? scanner.nextInt() : 0;
     }
 
     public int setGroupNumber() {
@@ -52,22 +54,34 @@ public class StrategyConsole implements Strategy {
 
         while(true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите номер группы:");
-            System.out.println("(целые числа от 100 до 400)");
+            System.out.println("Введите номер группы:\n(целые числа от 100 до 400)");
 
-            // проверка: пользователь должен ввести число, а не буквы
-            if (scanner.hasNextInt()) {
-                groupNumber = scanner.nextInt();
-            } else {
-                System.out.println("<!> Введённые данные не соответствуют условию");
-                System.out.println("---------------------------------------------");
-            }
+            groupNumber = parseToInt(scanner);
 
-            if (groupNumber >= 100 && groupNumber <= 400){
+            if (groupNumber >= 100 && groupNumber <= 400) {
                 break;
+            } else {
+                System.out.println("<!> Данные не соответствуют условию\n-----------------------------------");
             }
         }
         return groupNumber;
+    }
+
+    // проверка: пользователь должен ввести число, а не строку
+    public Double parseToDouble(String input) {
+        if(input == null || input.trim().isEmpty()) return 0.0;
+        try{
+            // меняем знак разделителя дроби, чтобы не возникала ошибка
+            // из-за знака, который не соответствует Locale сканнера
+            double value = Double.parseDouble(input.replace(",","."));
+
+            // оставляем два знака после запятой
+            value = Math.ceil(value * 100) / 100;
+
+            return value;
+        } catch (NumberFormatException e){
+            return 0.0;
+        }
     }
 
     public double setAverageScore() {
@@ -75,26 +89,15 @@ public class StrategyConsole implements Strategy {
 
         while(true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите средний балл студента:");
-            System.out.println("(от 2,0 до 5,0)");
+            System.out.println("Введите средний балл студента:\n(от 2,0 до 5,0)");
 
-            // проверка: пользователь должен ввести число, а не буквы
-            if (scanner.hasNextDouble()) {
-                // меняем знак разделителя дроби, чтобы не возникала ошибка
-//              // из-зи знака, который не соответствует Locale сканнера
-                String input = String.valueOf(scanner.nextDouble());
-                averageScore = Double.parseDouble(input.replace(",","."));
-
-                // оставляем два знака после запятой
-                averageScore = Math.ceil(averageScore * 100) / 100;
-            } else {
-                scanner.nextLine();
-                System.out.println("<!> Данные не соответствуют условию");
-                System.out.println("-----------------------------------");
-            }
+            String input = scanner.nextLine();
+            averageScore = parseToDouble(input);
 
             if (averageScore >= 2 && averageScore <= 5) {
                 break;
+            } else {
+                System.out.println("<!> Данные не соответствуют условию\n-----------------------------------");
             }
         }
         return averageScore;
@@ -105,20 +108,15 @@ public class StrategyConsole implements Strategy {
 
         while(true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите номер зачётной книжки:");
-            System.out.println("(числа от 10000000 до 99999999)");
+            System.out.println("Введите номер зачётной книжки:\n(числа от 10000000 до 99999999)");
 
-            // проверка: пользователь должен ввести число, а не буквы
-            if (scanner.hasNextInt()) {
-                studentBookNumber = scanner.nextInt();
-            } else {
-                scanner.nextLine();
-                System.out.println("<!> Введённые данные не соответствуют условию");
-                System.out.println("---------------------------------------------");
-            }
+            studentBookNumber = parseToInt(scanner);
 
             if (studentBookNumber >= 10000000 && studentBookNumber <= 99999999) {
                 break;
+            } else {
+                scanner.nextLine();
+                System.out.println("<!> Данные не соответствуют условию\n-----------------------------------");
             }
         }
         return studentBookNumber;
