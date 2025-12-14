@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private List<Student> students = new ArrayListLogger<>();
     private boolean isSorted = false;
 
@@ -123,7 +123,6 @@ public class Menu {
                 default:
                     continue;
             }
-            printStudents();
         }
     }
 
