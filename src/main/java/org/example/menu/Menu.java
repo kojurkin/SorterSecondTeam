@@ -187,9 +187,6 @@ public class Menu {
         if(students.isEmpty()) {
             System.out.println("Ошибка: Список студентов не существует! Сначала создайте список студентов.");
             return;
-        } else if(!isSorted) {
-            System.out.println("Ошибка: Список студентов не отсортирован, для начала отсортируйте его.");
-            return;
         }
         System.out.println("--Запись результата в файл--");
         Exporter.exportStudentsListToTextFile(students, "output.txt");

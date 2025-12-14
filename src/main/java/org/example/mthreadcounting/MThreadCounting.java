@@ -2,6 +2,7 @@ package org.example.mthreadcounting;
 
 import org.example.student.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -11,7 +12,8 @@ public class MThreadCounting {
     public int getCounting(List<Student> list, Student studentForSearch) {
 
         ExecutorService executor = Executors.newFixedThreadPool(3);
-        Future future = null;
+//        Future future = null;
+        List<Future<?>> futures = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
             int index = i;
@@ -23,22 +25,40 @@ public class MThreadCounting {
                 break;
             }
 
-            future = executor.submit(() -> {
+//            future = executor.submit(() -> {
+            Future<?> future = executor.submit(() -> {
 //                проверка работоспособности тредов
 //                System.out.println("Выполняется задача " + index + " в потоке " + Thread.currentThread().getName());
 
-                   if (list.get(index).equals(studentForSearch)) {
+/*                   if (list.get(index).equals(studentForSearch)) {
                        coincidences++;
-                   }
+                   }*/
+                        if (list.get(index).equals(studentForSearch)) {
+                            synchronized (this) {
+                                coincidences++;
+                            }
+//                System.out.println(list.get(index) + " == " + studentForSearch);
+                        }
             });
+            futures.add(future);//new
+
         }
             executor.shutdown();
 
 //        необходим, чтобы main thread дождался выполнения всех остальных тредов
 //        и не завершился раньше
-        if(future != null) {
+/*        if(future != null) {
             try {
                 future.get();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        }*/
+        for (Future<?> f : futures) {
+            try {
+                f.get();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } catch (ExecutionException e) {
