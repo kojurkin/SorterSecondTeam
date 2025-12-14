@@ -6,8 +6,6 @@ import org.example.listfiller.ListFillerFile;
 import org.example.listfiller.ListFillerRandom;
 import org.example.mthreadcounting.MThreadCounting;
 import org.example.sorter.BasicClientSorter;
-import org.example.sorter.ChainSorter;
-import org.example.sorter.ChainSorterFactory;
 import org.example.sorter.ClientFieldName;
 import org.example.sorter.ClientSorterEven;
 import org.example.student.Student;
@@ -25,7 +23,6 @@ import java.util.Scanner;
 public class Menu {
     private final Scanner scanner = new Scanner(System.in);
     private List<Student> students = new ArrayListLogger<>();
-    private boolean isSorted = false;
 
     public void mainMenu() throws Exception {
         while (true) {
@@ -145,7 +142,6 @@ public class Menu {
                             ClientFieldName.GroupNumber,
                             ClientFieldName.AverageScore,
                             ClientFieldName.StudentBookNumber);
-                    isSorted = true;
                     printStudents();
                     break;
                 case 2:
@@ -173,7 +169,6 @@ public class Menu {
                                 ClientFieldName.GroupNumber,
                                 ClientFieldName.AverageScore,
                                 ClientFieldName.StudentBookNumber);
-                        isSorted = true;
                         printStudents();
                     } catch (IllegalArgumentException e) {
                         System.out.println("Ошибка: " + e.getMessage() + ". Выберите другое поле.");
