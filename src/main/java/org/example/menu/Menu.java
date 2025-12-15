@@ -1,9 +1,6 @@
 package org.example.menu;
 
-import org.example.listfiller.ListFiller;
-import org.example.listfiller.ListFillerConsole;
-import org.example.listfiller.ListFillerFile;
-import org.example.listfiller.ListFillerRandom;
+import org.example.listfiller.*;
 import org.example.mthreadcounting.MThreadCounting;
 import org.example.sorter.BasicClientSorter;
 import org.example.sorter.ClientFieldName;
@@ -13,10 +10,6 @@ import org.example.student.StudentBuilder;
 import org.example.utilites.ArrayListLogger;
 import org.example.utilites.Exporter;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,18 +49,6 @@ public class Menu {
         }
     }
 
-    private int howMuchLinesInFile() {
-        int lineCount = 0;
-        try(BufferedReader br = new BufferedReader(new FileReader("file1.txt"))){
-            while(br.readLine() != null) {
-                lineCount++;
-            }
-        }catch (IOException e) {
-            System.out.println("Ошибка: " + Arrays.toString(e.getStackTrace()));
-        }
-        return lineCount;
-    }
-
     public void createArray() throws Exception {
         int size;
         while (true) {
@@ -81,8 +62,12 @@ public class Menu {
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка: Введены некорректные данные, пожалуйста, введите число больше 0.");
             }
-
         }
+
+        System.out.println("\n--Выбор API--\n  0. Использовать стандартный API (без Stream)\n  1. Использовать Stream API");
+        int apiChoice = readIntInput(1);
+        boolean useStreamApi = (apiChoice == 1);
+
         while (true) {
             System.out.println("--Создание массива--\n  1. Заполнить массив из файла.\n  2. Заполнить массив случайными данными.\n  3. Заполнить массив вручную.\n  0. Выйти в главное меню.");
             int input = readIntInput(3);
@@ -93,7 +78,7 @@ public class Menu {
             switch (input) {
                 case 1:
                     System.out.println("Заполнение массива из файла...");
-                    int lineCount = howMuchLinesInFile();
+                    int lineCount = Exporter.clearFile();
                     System.out.println("В файле сейчас: " + lineCount);
                     while (size > lineCount || size < 1) {
                         System.out.println("Ошибка: Желаемый размер (" + size + ") не входит в диапозон (1, " + lineCount + "). Введите новый размер: ");
@@ -104,17 +89,29 @@ public class Menu {
                             System.out.println("Ошибка: Введены некорректные данные.");
                         }
                     }
-                    listFiller = new ListFillerFile();
+                    if (useStreamApi) {
+                        listFiller = new ListFillerFile();
+                    } else {
+                        listFiller = new ListFillerFileNS();
+                    }
                     students = listFiller.fill(size);
                     break;
                 case 2:
                     System.out.println("Заполнение массива случайными данными...");
-                    listFiller = new ListFillerRandom();
+                    if (useStreamApi) {
+                        listFiller = new ListFillerRandom();
+                    } else {
+                        listFiller = new ListFillerRandomNS();
+                    }
                     students = listFiller.fill(size);
                     break;
                 case 3:
                     System.out.println("Заполнение массива вручную...");
-                    listFiller = new ListFillerConsole();
+                    if (useStreamApi) {
+                        listFiller = new ListFillerConsole();
+                    } else {
+                        listFiller = new ListFillerConsoleNS();
+                    }
                     students = listFiller.fill(size);
                     break;
                 default:
